@@ -9,7 +9,7 @@
     content="15 anos conectando talentos e empresas com tecnologia de ponta. Recrutamento IA, PCD e Jovem Aprendiz.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
     rel="stylesheet">
   <style>
     :root {
@@ -46,10 +46,125 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
+    }
+
+    /* ====== HEADING FONT — Syne: geometric, distinctive character ====== */
+    h1, h2, h3,
+    .section-title,
+    .card-title,
+    .cta-title,
+    .tl-title,
+    .footer-wordmark,
+    .glass-value {
+      font-family: 'Syne', sans-serif;
+    }
+
+    /* ====== BACKGROUND ATMOSPHERE — gradient mesh + grain ====== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 90% 65% at 100% -5%, rgba(0, 67, 73, 0.07) 0%, transparent 65%),
+        radial-gradient(ellipse 65% 50% at 0% 105%, rgba(232, 84, 26, 0.05) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 55% 50%, rgba(0, 67, 73, 0.03) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.022;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ====== NAV LINK — animated underline on hover ====== */
+    .nav-links a {
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--orange);
+      border-radius: 2px;
+      transition: width 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* ====== HERO ENTRANCE ANIMATIONS (above-fold — no scroll needed) ====== */
+    @keyframes hero-in {
+      from { opacity: 0; transform: translateY(26px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes hero-visual-in {
+      from { opacity: 0; transform: translateX(34px) scale(0.97); }
+      to   { opacity: 1; transform: translateX(0) scale(1); }
+    }
+
+    .hero-content .badge      { animation: hero-in 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both; }
+    .hero-content h1          { animation: hero-in 0.72s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both; }
+    .hero-content .hero-sub   { animation: hero-in 0.72s cubic-bezier(0.16, 1, 0.3, 1) 0.38s both; }
+    .hero-content .hero-ctas  { animation: hero-in 0.72s cubic-bezier(0.16, 1, 0.3, 1) 0.52s both; }
+    .hero-content .hero-stats { animation: hero-in 0.72s cubic-bezier(0.16, 1, 0.3, 1) 0.66s both; }
+    .hero-visual              { animation: hero-visual-in 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.42s both; }
+
+    /* Override the generic reveal transition on hero elements — animations handle it */
+    .hero-content.reveal,
+    .hero-visual.reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+
+    /* ====== DIAGONAL SECTION DIVIDER — hero → services ====== */
+    .services {
+      clip-path: polygon(0 44px, 100% 0, 100% 100%, 0 100%);
+      margin-top: -44px;
+      padding-top: 144px !important;
+    }
+
+    /* ====== BUTTON SHINE EFFECT ====== */
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.55s ease;
+    }
+
+    .btn-primary:hover::before {
+      left: 160%;
+    }
+
+    /* ====== STAT NUMBER — prep for counter animation ====== */
+    .stat-num {
+      display: inline-block;
     }
 
     /* ========== HEADER ========== */
@@ -132,7 +247,7 @@
       cursor: pointer;
       padding: 12px 24px;
       border-radius: var(--r-full);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 0.875rem;
       font-weight: 700;
       white-space: nowrap;
@@ -247,7 +362,7 @@
       border: 1.5px solid rgba(0, 67, 73, 0.25);
       padding: 12px 24px;
       border-radius: var(--r-full);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 0.875rem;
       font-weight: 600;
       cursor: pointer;
@@ -921,7 +1036,7 @@
       color: white;
       padding: 12px 16px;
       border-radius: var(--r-md);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 0.875rem;
       transition: all 0.2s;
       outline: none;
@@ -960,7 +1075,7 @@
       border: none;
       cursor: pointer;
       border-radius: var(--r-full);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 1rem;
       font-weight: 800;
       letter-spacing: -0.01em;
@@ -1681,6 +1796,45 @@
       const waBtn = document.getElementById('whatsapp-btn');
       if (waBtn) waBtn.classList.add('show');
     }, 4000);
+
+    // Counter animation for stats (hero + CTA section)
+    function animateCount(el, target, suffix, duration = 1600) {
+      const start = performance.now();
+      const update = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(eased * target) + suffix;
+        if (progress < 1) requestAnimationFrame(update);
+      };
+      requestAnimationFrame(update);
+    }
+
+    const statConfigs = [
+      { selector: '.hero-stats .stat-num', items: [
+        { target: 500, suffix: '+' },
+        { target: 98,  suffix: '%' },
+        { target: 15,  suffix: 'K+' },
+      ]},
+      { selector: '.cta-stat-num', items: [
+        { target: 500, suffix: '+' },
+        { target: 98,  suffix: '%' },
+        { target: 15,  suffix: '' },
+      ]},
+    ];
+
+    statConfigs.forEach(({ selector, items }) => {
+      const els = document.querySelectorAll(selector);
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !entry.target.dataset.counted) {
+            entry.target.dataset.counted = '1';
+            const idx = Array.from(els).indexOf(entry.target);
+            if (items[idx]) animateCount(entry.target, items[idx].target, items[idx].suffix);
+          }
+        });
+      }, { threshold: 0.6 });
+      els.forEach(el => counterObserver.observe(el));
+    });
   </script>
 </body>
 
