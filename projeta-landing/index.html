@@ -63,11 +63,19 @@
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(191, 200, 201, 0.2);
-      transition: box-shadow 0.3s;
+      transition: box-shadow 0.3s ease, transform 0.4s ease, opacity 0.4s ease;
+      transform: translateY(0);
+      opacity: 1;
     }
 
     header.scrolled {
       box-shadow: 0 4px 24px rgba(0, 67, 73, 0.08);
+    }
+
+    header.hidden {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
     }
 
     nav {
@@ -304,20 +312,23 @@
     .blob-placeholder {
       width: 100%;
       height: 420px;
-      background: linear-gradient(135deg, var(--teal-mid), var(--teal-deep));
-      border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%;
       display: flex;
-      align-items: center;
+      align-items: flex-end; /* Align bottom */
       justify-content: center;
       position: relative;
-      overflow: hidden;
     }
 
-    .blob-placeholder::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='30' cy='35' r='18' fill='rgba(255,255,255,0.06)'/%3E%3Ccircle cx='70' cy='65' r='24' fill='rgba(255,255,255,0.04)'/%3E%3C/svg%3E");
+    .hero-guy-img {
+      width: 130%; /* Balanced dimension after finding it too large previously */
+      flex-shrink: 0; /* Ensures the flexbox respects this 130% size completely */
+      height: auto;
+      object-fit: contain;
+      position: relative;
+      z-index: 5;
+      /* Fade transparent gradient at the bottom to blend smoothly without a hard edge */
+      -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+      transform: translateY(-15px); /* Adjusted vertical position for the new size */
     }
 
     .blob-inner-text {
@@ -685,7 +696,9 @@
       text-align: left;
     }
 
-    .empty-col { /* spacer column in timeline grid */ }
+    .empty-col {
+      /* spacer column in timeline grid */
+    }
 
     .timeline-node {
       display: flex;
@@ -1128,6 +1141,44 @@
       color: rgba(255, 255, 255, 0.35);
     }
 
+    /* ========== WHATSAPP BUTTON ========== */
+    .whatsapp-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 24px;
+      right: 24px;
+      background-color: #25d366;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 2px 2px 14px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.8) translateY(20px);
+    }
+
+    .whatsapp-float.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1) translateY(0);
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1) translateY(0);
+      box-shadow: 2px 4px 20px rgba(37, 211, 102, 0.4);
+    }
+
+    .whatsapp-icon {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+    }
+
     /* ========== SCROLL ANIMATIONS ========== */
     .reveal {
       opacity: 0;
@@ -1295,10 +1346,7 @@
       <div class="hero-visual reveal" style="transition-delay:0.15s">
         <div class="blob-wrapper">
           <div class="blob-placeholder">
-            <div class="blob-inner-text">
-              <div class="big-icon">👥</div>
-              <p>Equipe Corporativa Projeta</p>
-            </div>
+            <img src="assets/imagem-hero.png" alt="Hero Image Projeta" class="hero-guy-img">
           </div>
           <div class="glass-card">
             <div class="glass-icon">🧠</div>
@@ -1575,11 +1623,37 @@
     </div>
   </footer>
 
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/5519978091858" target="_blank" class="whatsapp-float" id="whatsapp-btn" title="Fale conosco no WhatsApp">
+    <img src="assets/whatsapp-icon.png" alt="WhatsApp" class="whatsapp-icon">
+  </a>
+
   <script>
-    // Scroll header shadow
+    // Scroll header shadow & Smart Hide
     const header = document.getElementById('main-header');
+    let lastScrollY = window.scrollY;
+    
     window.addEventListener('scroll', () => {
-      header.classList.toggle('scrolled', window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      
+      // Shadow check
+      header.classList.toggle('scrolled', currentScrollY > 20);
+      
+      // Hide/Show logic (only trigger after scrolling past a bit, e.g. 200px)
+      if (currentScrollY > 200) {
+        if (currentScrollY > lastScrollY) {
+          // Scrolling down
+          header.classList.add('hidden');
+        } else {
+          // Scrolling up
+          header.classList.remove('hidden');
+        }
+      } else {
+        // Always show if near the top
+        header.classList.remove('hidden');
+      }
+      
+      lastScrollY = currentScrollY;
     });
 
     // Reveal on scroll
@@ -1601,6 +1675,12 @@
         e.target.reset();
       }, 3000);
     }
+
+    // WhatsApp floating button delay
+    setTimeout(() => {
+      const waBtn = document.getElementById('whatsapp-btn');
+      if (waBtn) waBtn.classList.add('show');
+    }, 4000);
   </script>
 </body>
 
