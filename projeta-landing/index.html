@@ -1327,7 +1327,7 @@
         </div>
         <div class="hero-stats">
           <div class="stat">
-            <span class="stat-num">500+</span>
+            <span class="stat-num">20+</span>
             <span class="stat-label">empresas atendidas</span>
           </div>
           <span class="stat-divider">|</span>
@@ -1337,7 +1337,7 @@
           </div>
           <span class="stat-divider">|</span>
           <div class="stat">
-            <span class="stat-num">15K+</span>
+            <span class="stat-num">500+</span>
             <span class="stat-label">vagas preenchidas</span>
           </div>
         </div>
@@ -1507,11 +1507,11 @@
     <div class="cta-inner">
       <div class="cta-left reveal">
         <h2 class="cta-title">Pronto para Contratar com Precisão?</h2>
-        <p class="cta-sub">Junte-se a mais de 500 empresas que confiam na Projeta para transformar seus processos de RH
+        <p class="cta-sub">Junte-se a mais de 20 empresas que confiam na Projeta para transformar seus processos de RH
           com tecnologia e expertise.</p>
         <div class="cta-stats">
           <div class="cta-stat">
-            <div class="cta-stat-num">500+</div>
+            <div class="cta-stat-num">20+</div>
             <div class="cta-stat-label">Empresas</div>
           </div>
           <div class="cta-stat">
@@ -1666,9 +1666,30 @@
     // Form submit
     function handleSubmit(e) {
       e.preventDefault();
+      
+      const inputs = e.target.querySelectorAll('input, select, textarea');
+      const nome = inputs[0]?.value || '';
+      const email = inputs[1]?.value || '';
+      const telefone = inputs[2]?.value || '';
+      const servico = inputs[3]?.value || '';
+      const mensagem = inputs[4]?.value || '';
+      
+      let texto = `*Novo Contato - Projeta*\n\n`;
+      texto += `*Nome:* ${nome}\n`;
+      if(email) texto += `*E-mail:* ${email}\n`;
+      if(telefone) texto += `*Telefone:* ${telefone}\n`;
+      if(servico) texto += `*Serviço:* ${servico}\n`;
+      if(mensagem) texto += `*Mensagem:* ${mensagem}`;
+      
+      const numeroWa = '5519978091858';
+      const urlWa = `https://wa.me/${numeroWa}?text=${encodeURIComponent(texto)}`;
+      
       const btn = e.target.querySelector('.btn-form');
-      btn.textContent = '✓ Mensagem Enviada!';
+      btn.textContent = '✓ Redirecionando...';
       btn.style.background = '#166534';
+      
+      window.open(urlWa, '_blank');
+      
       setTimeout(() => {
         btn.textContent = 'Enviar Mensagem →';
         btn.style.background = '';
