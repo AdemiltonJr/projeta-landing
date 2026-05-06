@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidade | Projeta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --teal-deep: #004349;
+      --teal-mid: #0D5C63;
+      --teal-dark: #002D31;
+      --orange: #E8541A;
+      --orange-dark: #AC3500;
+      --bg: #FBF9F6;
+      --bg-low: #F5F3F0;
+      --white: #FFFFFF;
+      --text: #1B1C1A;
+      --text-muted: #3F484A;
+      --outline: #BFC8C9;
+      --r-sm: 8px;
+      --r-md: 16px;
+      --r-lg: 24px;
+      --r-xl: 32px;
+      --r-full: 9999px;
+      --shadow-ambient: 0 20px 60px rgba(0, 67, 73, 0.08);
+      --shadow-card: 0 8px 32px rgba(0, 67, 73, 0.10);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
+
+    /* ========== HEADER ========== */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(251, 249, 246, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(191, 200, 201, 0.2); transition: box-shadow 0.3s ease, transform 0.4s ease, opacity 0.4s ease; }
+    header.scrolled { box-shadow: 0 4px 24px rgba(0, 67, 73, 0.08); }
+    header.hidden { transform: translateY(-100%); opacity: 0; pointer-events: none; }
+    nav { max-width: 1280px; margin: 0 auto; padding: 0 40px; height: 72px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-icon-img { height: 42px; width: auto; display: block; }
+    .logo-text-img { height: 28px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: 0.9rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--teal-deep); }
+    .btn-primary { background: var(--orange); color: white; border: none; cursor: pointer; padding: 12px 24px; border-radius: var(--r-full); font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 700; white-space: nowrap; transition: transform 0.2s, box-shadow 0.2s, background 0.2s; box-shadow: 0 4px 16px rgba(232, 84, 26, 0.35); text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
+    .btn-primary:hover { background: var(--orange-dark); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(232, 84, 26, 0.4); }
+
+    /* ========== CONTENT ========== */
+    .page-wrapper { flex: 1; padding: 140px 40px 80px; max-width: 800px; margin: 0 auto; width: 100%; }
+    .page-title { font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 900; color: var(--teal-deep); margin-bottom: 24px; line-height: 1.1; letter-spacing: -0.025em; }
+    .page-content { background: var(--white); border-radius: var(--r-xl); padding: 48px; box-shadow: var(--shadow-card); border: 1px solid rgba(191, 200, 201, 0.3); }
+    .page-content p { font-size: 1.05rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
+    .page-content h2 { font-size: 1.4rem; font-weight: 800; color: var(--teal-deep); margin: 36px 0 16px; letter-spacing: -0.01em; }
+    .page-content h2:first-child { margin-top: 0; }
+    .page-content a { color: var(--orange); text-decoration: none; font-weight: 600; }
+    .page-content a:hover { text-decoration: underline; }
+
+    /* ========== FOOTER ========== */
+    footer { background: var(--teal-deep); color: white; padding: 80px 40px 40px; position: relative; overflow: hidden; }
+    .footer-arrow-deco { position: absolute; bottom: -50px; right: -50px; width: 300px; height: 300px; opacity: 0.05; }
+    .footer-inner { max-width: 1280px; margin: 0 auto; position: relative; z-index: 1; }
+    .footer-top { display: flex; flex-direction: column; gap: 12px; margin-bottom: 64px; }
+    .footer-wordmark { font-size: 2rem; font-weight: 900; letter-spacing: -0.03em; }
+    .footer-tagline { font-size: 1.1rem; color: rgba(255, 255, 255, 0.8); font-weight: 500; }
+    .footer-cols { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; margin-bottom: 64px; }
+    .footer-col-label { font-size: 0.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #FF9A70; margin-bottom: 20px; }
+    .footer-desc { color: rgba(255, 255, 255, 0.7); line-height: 1.7; font-size: 0.95rem; margin-bottom: 24px; max-width: 400px; }
+    .footer-contact { display: flex; flex-direction: column; gap: 12px; }
+    .footer-contact a { color: white; text-decoration: none; font-size: 0.95rem; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s; }
+    .footer-contact a:hover { color: var(--orange); }
+    .footer-links { display: flex; flex-direction: column; gap: 12px; }
+    .footer-links a { color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+    .footer-links a:hover { color: white; }
+    .footer-bottom { padding-top: 32px; border-top: 1px solid rgba(255, 255, 255, 0.1); display: flex; justify-content: space-between; align-items: center; font-size: 0.875rem; color: rgba(255, 255, 255, 0.5); }
+
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .page-wrapper { padding: 120px 20px 60px; }
+      .page-content { padding: 32px 24px; }
+      .footer-cols { grid-template-columns: 1fr; gap: 40px; }
+      .footer-bottom { flex-direction: column; text-align: center; gap: 16px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header id="main-header">
+    <nav>
+      <a href="index.html" class="logo">
+        <img src="assets/logo-icon.png" alt="Projeta ícone" class="logo-icon-img">
+        <img src="assets/logo-text.png" alt="Projeta" class="logo-text-img">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#servicos">Serviços</a></li>
+        <li><a href="index.html#ja">Jovem Aprendiz</a></li>
+        <li><a href="index.html#contato">Sobre Nós</a></li>
+        <li><a href="index.html#contato">Contato</a></li>
+      </ul>
+      <a href="index.html#contato" class="btn-primary">Solicitar Proposta</a>
+    </nav>
+  </header>
+
+  <main class="page-wrapper">
+    <h1 class="page-title">Política de Privacidade</h1>
+    <div class="page-content">
+      <p>A Projeta Gestão e Desenvolvimento de Talentos (nome empresarial A Ferreira da Silva Junior, CNPJ sob consulta), sediada em Campinas, São Paulo, Brasil, manifesta seu compromisso com a transparência e a segurança no tratamento dos dados de seus usuários. Esta Política de Privacidade descreve como coletamos e utilizamos informações em nosso site somosprojeta.com.br e em nossas ferramentas de automação de marketing.</p>
+
+      <h2>1. Coleta de Informações</h2>
+      <p>Coletamos informações fornecidas voluntariamente por você através de formulários de contato ou inscrições em nossos programas educacionais. Além disso, utilizamos APIs oficiais (como Google Ads API) para a gestão interna de métricas de desempenho de campanhas publicitárias de nossas unidades de negócio e parceiros.</p>
+
+      <h2>2. Uso de Dados e APIs</h2>
+      <p>Nossas ferramentas internas utilizam dados de performance (impressões, cliques e conversões) estritamente para otimização de campanhas e geração de relatórios de BI. Não compartilhamos, vendemos ou alugamos dados de terceiros ou de clientes para entidades externas.</p>
+
+      <h2>3. Direitos do Usuário (LGPD)</h2>
+      <p>Em conformidade com a Lei Geral de Proteção de Dados, garantimos a você o direito de acesso, correção ou exclusão de seus dados pessoais mantidos em nossa base, mediante solicitação ao e-mail: <a href="mailto:tecnologia@somosprojeta.com.br">tecnologia@somosprojeta.com.br</a>.</p>
+
+      <h2>4. Segurança</h2>
+      <p>Implementamos medidas técnicas e administrativas para proteger seus dados contra acessos não autorizados e garantir a integridade das informações processadas por nossas automações.</p>
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-wordmark">Projeta</div>
+        <div class="footer-tagline">Tecnologia e Experiência a Serviço do seu Crescimento</div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <div class="footer-col-label">Projeta</div>
+          <p class="footer-desc">Há 15 anos conectando talentos e empresas através de tecnologia e expertise humana em
+            Recursos Humanos. Somos mais do que uma consultoria — somos parceiros de crescimento.</p>
+          <div class="footer-contact">
+            <a href="mailto:comercial@somosprojeta.com.br">📧 comercial@somosprojeta.com.br</a>
+            <a href="tel:+5519978091858">📞 (19) 97809-1858</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">Serviços</div>
+          <div class="footer-links">
+            <a href="index.html#servicos">Recrutamento com IA</a>
+            <a href="index.html#servicos">Contratação PCD</a>
+            <a href="index.html#ja">Jovem Aprendiz</a>
+            <a href="index.html#contato">Consultoria de RH</a>
+            <a href="index.html#ja">Curso EAD de Capacitação</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">Legal</div>
+          <div class="footer-links">
+            <a href="politica-de-privacidade.html">Política de Privacidade</a>
+            <a href="termos-de-uso.html">Termos de Uso</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2025 Projeta Soluções de RH. Todos os direitos reservados.</span>
+        <span class="footer-credit">Desenvolvido com 🧡 e tecnologia de ponta</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById('main-header');
+    let lastScrollY = window.scrollY;
+    
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+      header.classList.toggle('scrolled', currentScrollY > 20);
+      if (currentScrollY > 200) {
+        if (currentScrollY > lastScrollY) {
+          header.classList.add('hidden');
+        } else {
+          header.classList.remove('hidden');
+        }
+      } else {
+        header.classList.remove('hidden');
+      }
+      lastScrollY = currentScrollY;
+    });
+  </script>
+</body>
+</html>
